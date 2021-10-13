@@ -1,0 +1,11 @@
+<h1>マイページ</h1>
+<%= link_to "新規投稿はこちら", new_book_path %>
+<% @books.each do |book| %>
+  <div>
+    <%= link_to book_path(book) do %>
+      <p>タイトル：<%= book.title %></p>
+    <% end %>
+    <p>あらすじ：<%= book.synopsis %></p>
+    <p>感想：<%= book.impression %></p>
+  </div>
+<% end %>

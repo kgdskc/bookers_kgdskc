@@ -1,0 +1,23 @@
+<h1>投稿編集</h1>
+<%= form_with model:@book, local:true do |f| %>
+  <div class="form-group">
+    <%= f.label :タイトル %>
+    <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :あらすじ %>
+    <%= f.text_area :synopsis, autofocus: true, autocomplete: "synopsis" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :感想 %>
+    <%= f.text_area :impression, autofocus: true, autocomplete: "impression" %>
+  </div>
+
+  <div class="action">
+    <%= f.submit "更新" %>
+  </div>
+<% end %>
+
+<%= link_to "投稿詳細に戻る", book_path(@book) %>
