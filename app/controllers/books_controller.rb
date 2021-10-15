@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
 
   def index
-    @books = Book.all
+    @books = Book.page(params[:page]).reverse_order.where(user_id: current_user.id)
   end
 
   def new
@@ -25,7 +25,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      redirect_to books_path
+      redirect_to books_path, notice: "投稿しました"
     else
       render :new
     end
@@ -34,13 +34,22 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to books_path, notice: "更新されました"
+      render :show, notice: "更新されました"
     else
       render :edit
     end
   end
 
   def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to books_path, notice: "削除しました"
+  end
+
+  def search
+    @books = Book.search(params[:keyword]).page(params[:page]).reverse_order
+    @keyword = params[:keyword]
+    render "search"
   end
 
   private
