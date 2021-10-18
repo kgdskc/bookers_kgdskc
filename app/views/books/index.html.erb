@@ -1,12 +1,33 @@
-<h1>マイページ</h1>
-<%= link_to "新規投稿はこちら", new_book_path %>
+<h1 class="ml-3 mt-5 mb-5">マイ投稿一覧</h1>
+<%= link_to "新規投稿はこちら", new_book_path, class: "glyphicon glyphicon-pencil btn btn-success mb-5 ml-3" %>
 <% @books.each do |book| %>
-  <div>
-    <%= link_to book_path(book) do %>
-      <p>タイトル：<%= book.title %></p>
-    <% end %>
-    <p>あらすじ：<%= book.synopsis %></p>
-    <p>感想：<%= book.impression %></p>
+  <div class="card-group col-md-12 text-center pb-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= link_to book_path(book) do %>
+            <p>タイトル：<%= book.title %></p>
+          <% end %>
+        </h5>
+        <p class="card-text text-left text-info">
+          <strong>
+            あらすじ：</br>
+          </strong>
+          <%= book.synopsis %>
+        </p>
+        <p class="card-text text-left text-danger">
+          <small class="text-muted">
+            <strong>
+              感想：</br>
+            </strong>
+            <%= book.impression %>
+          </small>
+        </p>
+      </div>
+    </div>
   </div>
+  
 <% end %>
 <%= paginate @books %>
+            
+              
