@@ -1,23 +1,29 @@
-<h1>新規投稿</h1>
-<%= form_with model:@book, local:true do |f| %>
-  <div class="form-group">
-    <%= f.label :タイトル %>
-    <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
-  </div>
+<div class="conteiner">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2 class="mt-4 mb-5 head-line">新規投稿</h2>
+      <%= form_with model:@book, local:true do |f| %>
+        <div class="form-group col-md-12">
+          <%= f.label :タイトル, class: "col-md-4 control-label" %>
+          <%= f.text_field :title, autofocus: true, autocomplete: "title", class: "col-md-4", placeholder: '吾輩は猫である' %>
+        </div>
 
-  <div class="form-group">
-    <%= f.label :あらすじ %>
-    <%= f.text_area :synopsis, autofocus: true, autocomplete: "synopsis" %>
-  </div>
+        <div class="form-group col-md-12">
+          <%= f.label :あらすじ, class: "col-md-4 control-label" %>
+          <%= f.text_area :synopsis, size: "20x5", autofocus: true, autocomplete: "synopsis", class: "col-md-4", placeholder: '物語の語り手は、珍野家で飼われている雄猫。彼に名前はなく、自分のことを吾輩と呼んでいる。' %>
+        </div>
 
-  <div class="form-group">
-    <%= f.label :感想 %>
-    <%= f.text_area :impression, autofocus: true, autocomplete: "impression" %>
-  </div>
+        <div class="form-group col-md-12">
+          <%= f.label :感想, class: "col-md-4 control-label" %>
+          <%= f.text_area :impression, size: "20x5", autofocus: true, autocomplete: "impression", class: "col-md-4", placeholder: '思わず笑ってしまう描写が多いので、楽しんで読み進められます！' %>
+        </div>
 
-  <div class="action">
-    <%= f.submit "投稿" %>
+        <div class="action mt-5 mb-5">
+          <%= f.submit "投稿", class: "btn btn-success btn-lg mr-3" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
 
 <%= link_to "マイページに戻る", books_path %>
