@@ -1,10 +1,29 @@
-<h1>投稿詳細</h1>
-<div>
-  <p><%= @book.title %></p>
-  <p><%= @book.synopsis %></p>
-  <p><%= @book.impression %></p>
-  <% if @book.user == current_user %>
-    <%= link_to '編集', edit_book_path(@book) %>
-    <%= link_to '削除', book_path(@book), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-  <% end %>
+<h1 class="mt-4 ml-5 mb-5">投稿詳細</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>タイトル：<%= @book.title %></h3>
+      <p class="mt-5 text-info">
+        <strong>
+          あらすじ：</br>
+        </strong>
+        <%= @book.synopsis %>
+      </p>
+      <p class="mt-5">
+        <small class="text-muted">
+          <strong>
+            感想：</br>
+          </strong>
+          <%= @book.impression %>
+        </small>
+      </p>
+      <% if @book.user == current_user %>
+        <div class="mb-5 mt-5">
+
+          <%= link_to '編集', edit_book_path(@book), class: "btn btn-success btn-lg mr-3" %>
+          <%= link_to '削除', book_path(@book), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-lg" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

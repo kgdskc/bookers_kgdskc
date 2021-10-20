@@ -1,18 +1,38 @@
 
-<div class="search-form">
+<div class="search-form mt-5 ml-5 mb-5">
   <%= form_with url: search_path, method: :get, local: true do |f| %>
     <%= f.text_field :keyword, value: @keyword %>
     <%= f.submit "検索" %>
   <% end %>
 </div>
-<div>
-  <% @books.each do |book| %>
-    <%= link_to book_path(book) do %>
-      <p>タイトル：<%= book.title %></p>
-    <% end %>
-    <p>あらすじ：<%= book.synopsis %></p>
-    <p>感想：<%= book.impression %></p>
-  <% end %>
-</div>
+<h1 class="ml-3 mt-5 mb-5">他者の投稿一覧</h1>
+<% @books.each do |book| %>
+  <div class="card-group col-md-12 text-center pb-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= link_to book_path(book) do %>
+            <p>タイトル：<%= book.title %></p>
+          <% end %>
+        </h5>
+        <p class="card-text text-left text-info pt-5">
+          <strong>
+            あらすじ：</br>
+          </strong>
+          <%= book.synopsis %>
+        </p>
+        <p class="card-text text-left text-danger pt-5">
+          <small class="text-muted">
+            <strong>
+              感想：</br>
+            </strong>
+            <%= book.impression %>
+          </small>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+  
 
 <%= paginate @books %>
