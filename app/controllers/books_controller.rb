@@ -57,3 +57,4 @@ class BooksController < ApplicationController
     params.require(:book).permit(:user_id, :title, :synopsis, :impression)
   end
 end
+
