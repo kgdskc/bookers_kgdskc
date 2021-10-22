@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   def index
+    # ↓kaminariを使用
     @books = Book.page(params[:page]).reverse_order.where(user_id: current_user.id)
   end
 
@@ -24,7 +25,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      redirect_to books_path, notice: "投稿しました"
+      redirect_to books_path
     else
       render :new
     end
@@ -33,7 +34,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      render :show, notice: "更新されました"
+      render :show
     else
       render :edit
     end
@@ -42,9 +43,10 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to books_path, notice: "削除しました"
+    redirect_to books_path
   end
 
+  # ↓他者の投稿ページの記述（kaminari併用）
   def search
     @books = Book.search(params[:keyword]).page(params[:page]).reverse_order
     @keyword = params[:keyword]
@@ -57,4 +59,3 @@ class BooksController < ApplicationController
     params.require(:book).permit(:user_id, :title, :synopsis, :impression)
   end
 end
-

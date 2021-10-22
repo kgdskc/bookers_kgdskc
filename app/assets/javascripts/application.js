@@ -17,6 +17,7 @@
 //= require turbolinks
 //= require_tree .
 
+// ↓skipprの記述
 $(document).ready(function(){
   $("#theTarget").skippr({
     transition : 'slide',
@@ -26,7 +27,7 @@ $(document).ready(function(){
     childrenElementType : 'div',
     arrows : true,
     autoPlay : true,
-    autoPlayDuration : 7000,
+    autoPlayDuration : 3000,
     keyboardOnAlways : true,
     hidePrevious : false
   });

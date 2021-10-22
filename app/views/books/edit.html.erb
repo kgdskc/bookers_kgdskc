@@ -2,6 +2,14 @@
   <div class="row">
     <div class="col-md-12 text-center">
       <h2 class="mt-4 mb-5 head-line">投稿編集</h2>
+      <div class="mb-5">
+        <% if @book.errors.any? %>
+          <%= @book.errors.count %>件の未記入があります
+          <% @book.errors.full_messages.each do |message| %>
+            <strong><p><%= message %></p></strong><br />
+          <% end %>
+        <% end %>
+      </div>
       <%= form_with model:@book, local:true do |f| %>
         <div class="form-group col-md-12">
           <%= f.label :タイトル, class: "col-md-4 control-label" %>
@@ -25,5 +33,10 @@
     </div>
   </div>
 </div>
+<div class="text-center">
+  <h4 class="mt-5 mb-5 head-line title_h4">
+    <%= link_to "投稿詳細に戻る", book_path(@book) %>
+  </h4>
+</div>
 
-<%= link_to "投稿詳細に戻る", book_path(@book) %>
+
